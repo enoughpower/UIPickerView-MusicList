@@ -34,12 +34,17 @@ static NSString *CellReuseIdentifier = @"lyricCell";
     _bgView.showsHorizontalScrollIndicator = NO;
     _bgView.pagingEnabled = YES;
     [self addSubview:_bgView];
+    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIVisualEffectView *albumBg = [[UIVisualEffectView alloc]initWithEffect:blur];
+    albumBg.frame = CGRectZero;
+    albumBg.alpha = 0.2;
+    albumBg.layer.masksToBounds = YES;
+    albumBg.layer.cornerRadius = (self.frame.size.width - 55) / 2;
+    [_bgView addSubview:albumBg];
     
     _albumImage = [[UIImageView alloc]initWithFrame:CGRectZero];
     _albumImage.layer.masksToBounds = YES;
-    _albumImage.layer.cornerRadius = 150;
-    _albumImage.layer.borderColor = [UIColor colorWithWhite:0.3 alpha:0.2].CGColor;
-    _albumImage.layer.borderWidth = 5;
+    _albumImage.layer.cornerRadius = (self.frame.size.width - 75) / 2;
     [_bgView addSubview:_albumImage];
     
     _lyricTable = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -52,6 +57,11 @@ static NSString *CellReuseIdentifier = @"lyricCell";
     [_albumImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_bgView).offset(75/2);
         make.width.and.height.equalTo(@(self.frame.size.width - 75));
+        make.centerY.equalTo(_bgView);
+    }];
+    [albumBg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_bgView).offset(55/2);
+        make.width.and.height.equalTo(@(self.frame.size.width - 55));
         make.centerY.equalTo(_bgView);
     }];
     [_lyricTable mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -78,7 +88,6 @@ static NSString *CellReuseIdentifier = @"lyricCell";
     [self.lyricTable reloadData];
     NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.lyricTable selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-
 }
 
 

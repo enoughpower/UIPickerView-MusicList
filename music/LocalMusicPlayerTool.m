@@ -85,7 +85,7 @@
     if (self.timer != nil) {
         return;
     }
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:.05f target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:.5f target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
     
     [self.player play];
 }
