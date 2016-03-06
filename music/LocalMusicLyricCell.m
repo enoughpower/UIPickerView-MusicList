@@ -33,9 +33,6 @@
             make.right.equalTo(self.contentView);
             make.centerY.equalTo(self.contentView);
         }];
-        
-        
-        
     }
     return self;
 }
@@ -53,6 +50,7 @@
     }else {
         _lyricLabel.textColor = [UIColor whiteColor];
     }
+    
     
     // Configure the view for the selected state
 }

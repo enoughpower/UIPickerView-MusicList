@@ -139,7 +139,6 @@
         make.right.equalTo(_label).offset(-30);
         make.height.and.width.equalTo(@20);
     }];
-    
     [_play mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
         make.bottom.equalTo(self).offset(-20);

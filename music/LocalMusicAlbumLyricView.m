@@ -35,11 +35,15 @@ static NSString *CellReuseIdentifier = @"lyricCell";
     _bgView.pagingEnabled = YES;
     [self addSubview:_bgView];
     
+    UILabel *bgImage = [[UILabel alloc]initWithFrame:CGRectZero];
+    bgImage.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.2];
+    bgImage.layer.cornerRadius = 160;
+    bgImage.layer.masksToBounds = YES;
+    [_bgView addSubview:bgImage];
+    
     _albumImage = [[UIImageView alloc]initWithFrame:CGRectZero];
     _albumImage.layer.masksToBounds = YES;
     _albumImage.layer.cornerRadius = 150;
-    _albumImage.layer.borderColor = [UIColor colorWithWhite:0.3 alpha:0.2].CGColor;
-    _albumImage.layer.borderWidth = 5;
     [_bgView addSubview:_albumImage];
     
     _lyricTable = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -49,6 +53,11 @@ static NSString *CellReuseIdentifier = @"lyricCell";
     _lyricTable.showsVerticalScrollIndicator = NO;
     [_bgView addSubview:_lyricTable];
     
+    [bgImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_bgView).offset(55/2);
+        make.width.and.height.equalTo(@(self.frame.size.width - 55));
+        make.centerY.equalTo(_bgView);
+    }];
     [_albumImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_bgView).offset(75/2);
         make.width.and.height.equalTo(@(self.frame.size.width - 75));
