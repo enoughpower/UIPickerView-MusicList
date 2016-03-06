@@ -110,7 +110,9 @@
 #pragma mark -- PlayerToolDelegate
 - (void)getCurTiem:(NSString *)curTime Totle:(NSString *)totleTime Progress:(CGFloat)progress
 {
-    _MusicView.albumView.albumImage.transform = CGAffineTransformRotate(_MusicView.albumView.albumImage.transform, M_PI/180);
+    [UIView animateWithDuration:0.5f delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+            _MusicView.albumView.albumImage.transform = CGAffineTransformRotate(_MusicView.albumView.albumImage.transform, M_PI/20);
+    } completion:nil];
     _MusicView.currentTimeLabel.text = curTime;
     _MusicView.totalTimeLabel.text = totleTime;
     _MusicView.progress.value = progress;
